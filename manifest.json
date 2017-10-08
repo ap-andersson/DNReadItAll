@@ -1,0 +1,19 @@
+{
+   "manifest_version": 3,
+   "name": "DN Read It All",
+   "description": "Read it all on DN.se",
+   "version": "0.1",
+
+   "content_scripts": [ {
+      "css": [ "style.css" ],
+      "matches": [ "http://www.dn.se/*" ]
+   } ],
+   
+   "permissions": ["*://www.dn.se/*"],
+
+   "content_scripts": [{
+      "matches": ["*://www.dn.se/*"],
+      "js": ["clear_on_load.js"],
+      "run_at": "document_end"
+    }]
+}

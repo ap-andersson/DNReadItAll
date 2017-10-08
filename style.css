@@ -1,0 +1,22 @@
+div.paywall-mask
+{
+	display: none !important;
+}
+#paywall-container
+{
+	display: none !important;
+}
+div.paywall-content
+{
+	height: inherit !important;
+	overflow: visible !important;
+}
+/*div.article__premium-content
+{
+	display: block;
+}
+div.article__lead 
+{
+	box-shadow: none;
+	overflow: visible;
+}*/
