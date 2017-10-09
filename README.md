@@ -1,2 +1,2 @@
 # DNReadItAll
-Removed paywall and adblock stuff from DN.se using plain old Javascript,
+Removed paywall and adblock stuff from DN.se using plain old Javascript.
