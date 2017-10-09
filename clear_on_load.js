@@ -1,17 +1,27 @@
 
-var waitCounter = 0;
+var paywallWaitCounter = 0;
 var waitForPaywall = setInterval (checkForPaywall, 500);
 
-function checkForPaywall () 
-{
-	waitCounter++;
-	//alert("checkForPaywall");
+var adblockWindowWaitCounter = 0;
+var waitForAdblockWindow = setInterval (checkAndCloseAdblockWindow, 500);
 
+function checkAndCloseAdblockWindow() {
+	adblockWindowWaitCounter++;
 	var adblockWindowExit = document.getElementById("adblk-close"); //.click();
 	if(adblockWindowExit) {
 		console.log("DNReadItAll - Closing adblock window");
 		adblockWindowExit.click();
+		clearInterval(waitForAdblockWindow);
 	}
+	else if(adblockWindowWaitCounter >= 20) {
+		console.log("DNReadItAll - Check for adblock window, giving up after 20 tries");
+		clearInterval(waitForAdblockWindow);
+	}
+}
+
+function checkForPaywall () 
+{
+	paywallWaitCounter++;
 
 	var articleBodyMask = document.getElementsByClassName('article__body article__body--mask');
 	var klarna = document.getElementById('klanaStep2');
@@ -22,9 +32,9 @@ function checkForPaywall ()
         removePayWall();
         clearInterval(waitForPaywall);
     } 
-    else if(waitCounter >= 20) 
+    else if(paywallWaitCounter >= 20) 
     {
-		console.log("DNReadItAll - Giving up after 20 tries");
+		console.log("DNReadItAll - Check for paywall, giving up after 20 tries");
     	clearInterval(waitForPaywall);
     }
 }
